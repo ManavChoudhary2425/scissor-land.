@@ -4,23 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Scissor Land</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #007bff;
-    --secondary: #00bfff;
+    --primary: #0056b3;
+    --secondary: #007bff;
     --accent: #ff5a5f;
-    --glass: rgba(255, 255, 255, 0.15);
+    --light: #f8fbff;
+    --text: #1c1c1c;
   }
 
   * {
-    margin: 0; padding: 0; box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   body {
-    font-family: 'Poppins', sans-serif;
-    background: radial-gradient(circle at top right, #e3f2fd, #ffffff 60%);
-    color: #222;
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--light);
+    color: var(--text);
     overflow-x: hidden;
     scroll-behavior: smooth;
   }
@@ -28,76 +31,74 @@
   /* NAVBAR */
   nav {
     position: fixed;
-    top: 0; left: 0;
+    top: 0;
     width: 100%;
+    background: rgba(255,255,255,0.9);
     backdrop-filter: blur(12px);
-    background: rgba(255, 255, 255, 0.65);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 60px;
-    z-index: 999;
-    box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+    padding: 18px 70px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+    z-index: 1000;
     transition: all 0.3s ease;
   }
   nav.scrolled {
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    background: rgba(255,255,255,1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   }
   nav h1 {
     font-weight: 700;
     font-size: 1.8rem;
-    color: var(--accent);
+    color: var(--primary);
   }
   nav span {
     color: #000;
   }
 
-  /* Hero Section */
+  /* HERO */
   header {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(120deg, var(--primary), var(--secondary));
+    color: #fff;
     text-align: center;
     position: relative;
     overflow: hidden;
-    color: #fff;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
   }
-  header::before {
+  header::after {
     content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/clean-textile.png');
-    opacity: 0.08;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/white-diamond.png');
+    opacity: 0.1;
   }
   header h1 {
     font-size: 4rem;
     font-weight: 700;
     letter-spacing: 1px;
-    z-index: 2;
-    animation: fadeInDown 1.3s ease-out;
+    animation: fadeDown 1.2s ease-out;
   }
   header p {
-    font-size: 1.3rem;
     margin-top: 15px;
-    opacity: 0.9;
-    z-index: 2;
-    animation: fadeInUp 1.5s ease-out;
+    font-size: 1.3rem;
+    animation: fadeUp 1.2s ease-out;
   }
 
-  @keyframes fadeInDown {
-    from {opacity: 0; transform: translateY(-40px);}
+  @keyframes fadeDown {
+    from {opacity: 0; transform: translateY(-30px);}
     to {opacity: 1; transform: translateY(0);}
   }
-  @keyframes fadeInUp {
-    from {opacity: 0; transform: translateY(40px);}
+  @keyframes fadeUp {
+    from {opacity: 0; transform: translateY(30px);}
     to {opacity: 1; transform: translateY(0);}
   }
 
-  /* Treatments Section */
+  /* Treatments */
   .treatments {
     max-width: 1200px;
     margin: 120px auto;
@@ -106,40 +107,43 @@
   .treatments h2 {
     text-align: center;
     font-size: 2.4rem;
-    margin-bottom: 50px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 60px;
     position: relative;
   }
   .treatments h2::after {
     content: '';
     position: absolute;
-    bottom: -10px; left: 50%;
+    width: 80px;
+    height: 3px;
+    background: var(--secondary);
+    left: 50%;
+    bottom: -12px;
     transform: translateX(-50%);
-    width: 80px; height: 4px;
-    background: linear-gradient(45deg, var(--primary), var(--secondary));
-    border-radius: 4px;
+    border-radius: 5px;
   }
   .treatments ul {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 35px;
+    gap: 30px;
   }
   .treatments li {
-    background: var(--glass);
-    backdrop-filter: blur(15px);
+    background: #fff;
+    border: 1px solid #e6efff;
     padding: 25px;
-    border-radius: 20px;
-    color: #111;
-    font-size: 1.1rem;
+    border-radius: 16px;
     text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    font-size: 1.05rem;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     transition: all 0.4s ease;
-    transform: perspective(800px) rotateY(0deg);
   }
   .treatments li:hover {
-    transform: perspective(800px) rotateY(8deg) translateY(-6px);
-    background: rgba(255,255,255,0.9);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+    border-color: var(--secondary);
   }
 
   /* Buttons */
@@ -151,71 +155,73 @@
     margin: 90px 0;
   }
   .buttons a button {
-    border: none;
     padding: 18px 45px;
+    border: none;
     border-radius: 50px;
-    font-size: 1.1rem;
-    font-weight: 600;
     color: #fff;
-    letter-spacing: 0.6px;
+    font-weight: 600;
+    font-size: 1.05rem;
     cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   }
   .call-btn {
-    background: linear-gradient(45deg, #ff5a5f, #ff8a80);
+    background: linear-gradient(45deg, #004085, #007bff);
   }
   .insta-btn {
     background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
   }
   .buttons a:nth-child(3) button {
-    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    background: linear-gradient(45deg, #007bff, #00bfff);
   }
   .buttons a button:hover {
-    transform: translateY(-6px) scale(1.05);
+    transform: translateY(-4px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   }
 
   /* Contact */
   .contact {
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 80px;
     color: #333;
   }
 
   /* Footer */
   footer {
+    background: #f1f6ff;
     text-align: center;
-    background: #f8f9fa;
     padding: 25px 15px;
-    color: #555;
+    font-size: 0.95rem;
+    color: #333;
     border-top: 1px solid rgba(0,0,0,0.05);
   }
+  footer span {
+    color: var(--primary);
+    font-weight: 600;
+  }
 
-  /* Welcome Popup */
+  /* Popup */
   #welcomePopup {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(10px);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 2000;
-    backdrop-filter: blur(10px);
   }
   #welcomePopup div {
-    background: linear-gradient(135deg, #ffffff90, #ffffff20);
-    backdrop-filter: blur(15px);
+    background: #fff;
     border-radius: 20px;
-    padding: 50px 60px;
+    padding: 50px 70px;
     text-align: center;
-    box-shadow: 0 15px 45px rgba(0,0,0,0.25);
-    color: #000;
-    animation: popupIn 0.7s ease-out;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    animation: popupIn 0.6s ease-out;
   }
   @keyframes popupIn {
-    from {transform: scale(0.7); opacity: 0;}
+    from {transform: scale(0.8); opacity: 0;}
     to {transform: scale(1); opacity: 1;}
   }
   #welcomePopup button {
@@ -224,7 +230,7 @@
     border: none;
     border-radius: 40px;
     background: linear-gradient(45deg, var(--primary), var(--secondary));
-    color: white;
+    color: #fff;
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
@@ -235,11 +241,11 @@
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   }
 
-  /* Scroll Reveal Animation */
+  /* Scroll Animation */
   .reveal {
     opacity: 0;
-    transform: translateY(60px);
-    transition: all 1s ease;
+    transform: translateY(50px);
+    transition: all 0.9s ease;
   }
   .reveal.active {
     opacity: 1;
@@ -247,8 +253,9 @@
   }
 
   @media(max-width: 768px) {
-    header h1 { font-size: 2.8rem; }
     nav { padding: 15px 25px; }
+    header h1 { font-size: 2.8rem; }
+    header p { font-size: 1.1rem; }
   }
 </style>
 </head>
@@ -300,7 +307,7 @@
 </div>
 
 <footer>
-  &copy; 2025 Scissor Land | Owner: Manav Choudhary
+  &copy; 2025 <span>Scissor Land</span> | Owner: Manav Choudhary
 </footer>
 
 <script>
@@ -317,14 +324,14 @@
     document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
   });
 
-  // Scroll reveal animation
+  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   window.addEventListener('scroll', () => {
-    for (let i = 0; i < reveals.length; i++) {
+    reveals.forEach(el => {
       const windowHeight = window.innerHeight;
-      const revealTop = reveals[i].getBoundingClientRect().top;
-      if (revealTop < windowHeight - 100) reveals[i].classList.add('active');
-    }
+      const top = el.getBoundingClientRect().top;
+      if (top < windowHeight - 100) el.classList.add('active');
+    });
   });
 </script>
 
