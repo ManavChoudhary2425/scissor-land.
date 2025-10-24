@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scissor Land</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #007bff;
+    --secondary: #00bfff;
+    --accent: #ff5a5f;
+    --glass: rgba(255, 255, 255, 0.15);
+  }
+
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at top right, #e3f2fd, #ffffff 60%);
+    color: #222;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  /* NAVBAR */
+  nav {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.65);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 60px;
+    z-index: 999;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+  }
+  nav.scrolled {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+  nav h1 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--accent);
+  }
+  nav span {
+    color: #000;
+  }
+
+  /* Hero Section */
+  header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/clean-textile.png');
+    opacity: 0.08;
+  }
+  header h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    z-index: 2;
+    animation: fadeInDown 1.3s ease-out;
+  }
+  header p {
+    font-size: 1.3rem;
+    margin-top: 15px;
+    opacity: 0.9;
+    z-index: 2;
+    animation: fadeInUp 1.5s ease-out;
+  }
+
+  @keyframes fadeInDown {
+    from {opacity: 0; transform: translateY(-40px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+  @keyframes fadeInUp {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* Treatments Section */
+  .treatments {
+    max-width: 1200px;
+    margin: 120px auto;
+    padding: 0 40px;
+  }
+  .treatments h2 {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 50px;
+    position: relative;
+  }
+  .treatments h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 4px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    border-radius: 4px;
+  }
+  .treatments ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 35px;
+  }
+  .treatments li {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    padding: 25px;
+    border-radius: 20px;
+    color: #111;
+    font-size: 1.1rem;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+    transform: perspective(800px) rotateY(0deg);
+  }
+  .treatments li:hover {
+    transform: perspective(800px) rotateY(8deg) translateY(-6px);
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  }
+
+  /* Buttons */
+  .buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin: 90px 0;
+  }
+  .buttons a button {
+    border: none;
+    padding: 18px 45px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.6px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
+  .call-btn {
+    background: linear-gradient(45deg, #ff5a5f, #ff8a80);
+  }
+  .insta-btn {
+    background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+  }
+  .buttons a:nth-child(3) button {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+  }
+  .buttons a button:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+
+  /* Contact */
+  .contact {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 80px;
+    color: #333;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    background: #f8f9fa;
+    padding: 25px 15px;
+    color: #555;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+
+  /* Welcome Popup */
+  #welcomePopup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(10px);
+  }
+  #welcomePopup div {
+    background: linear-gradient(135deg, #ffffff90, #ffffff20);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 50px 60px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+    color: #000;
+    animation: popupIn 0.7s ease-out;
+  }
+  @keyframes popupIn {
+    from {transform: scale(0.7); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+  }
+  #welcomePopup button {
+    margin-top: 25px;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 40px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  #welcomePopup button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+
+  /* Scroll Reveal Animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 1s ease;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media(max-width: 768px) {
+    header h1 { font-size: 2.8rem; }
+    nav { padding: 15px 25px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <h1>✂️ <span>Scissor Land</span></h1>
+</nav>
+
+<!-- Welcome Popup -->
+<div id="welcomePopup">
+  <div>
+    <p>Welcome to <strong>✂️ Scissor Land</strong>!<br>Professional hair treatments & services by <strong>Manav Choudhary</strong></p>
+    <button onclick="closePopup()">Enter Site</button>
+  </div>
+</div>
+
+<header>
+  <h1>✂️ Scissor Land</h1>
+  <p>Hair treatments & services by <strong>Manav Choudhary</strong></p>
+</header>
+
+<section class="treatments reveal">
+  <h2>Our Treatments & Services</h2>
+  <ul>
+    <li>Keratine</li>
+    <li>Rebonding</li>
+    <li>Smoothening</li>
+    <li>Cysteine</li>
+    <li>Blow Dryer</li>
+    <li>Headwash</li>
+    <li>Highlights</li>
+    <li>Global Color</li>
+    <li>Root Touch-up</li>
+    <li>Nanoplastia</li>
+    <li>Botox</li>
+    <li>All Hair Cuts</li>
+  </ul>
+</section>
+
+<div class="buttons reveal">
+  <a href="tel:+919501843018"><button class="call-btn">📞 Call Now</button></a>
+  <a href="https://instagram.com/cosmetologist_hairs_artist" target="_blank"><button class="insta-btn">📸 Follow on Instagram</button></a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_w019M5pW4G2wZhlYlYh4kXxtW-nCRz-6JwKrWKW0LzwSrw/viewform?usp=sharing&ouid=109623966837409534421" target="_blank"><button>🗓️ Book Appointment</button></a>
+</div>
+
+<div class="contact reveal">
+  Contact: +91 95018-43018
+</div>
+
+<footer>
+  &copy; 2025 Scissor Land | Owner: Manav Choudhary
+</footer>
+
+<script>
+  // Welcome Popup
+  window.onload = () => {
+    document.getElementById('welcomePopup').style.display = 'flex';
+  };
+  function closePopup() {
+    document.getElementById('welcomePopup').style.display = 'none';
+  }
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Scroll reveal animation
+  const reveals = document.querySelectorAll('.reveal');
+  window.addEventListener('scroll', () => {
+    for (let i = 0; i < reveals.length; i++) {
+      const windowHeight = window.innerHeight;
+      const revealTop = reveals[i].getBoundingClientRect().top;
+      if (revealTop < windowHeight - 100) reveals[i].classList.add('active');
+    }
+  });
+</script>
+
+</body>
+</html>
